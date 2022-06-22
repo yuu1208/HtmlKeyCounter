@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>HTML Key Counter</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="editor">
+  <h2>HTML Key Counter v2.5</h2>
+  <p>押されたキー（Q,R,U,P 限定）の時間とKeyCodeをconsole.logに出力します。<br />
+  開発者コンソールを一緒に開いて実行してください。</p>
+  <p style="color:red">必ずタイマーが動いてることを確認してください。<br />
+  タイマーが進んでいなかった場合、表示された時刻で保存されます。</p>
+  <p style="color:red"><b>BackSpaceキーを押すと保存データーを削除します。<br />
+  記録中に押さないようご注意ください。</b></p>
+
+
+
+  <script type="text/javascript" src="index.js"></script>
+
+
+  <form name="myForm">
+  <input type="text" size="28" name="myFormTime" style="display:none">
+    
+  <p id="plya_btn"><input type="button" value="開始" name="myFormButton" onclick="myCheck()"></p>
+
+  <p style="font-size:25px"><span id="data_output">0,0.000</span></p>
+  <hr style="border:0;border-bottom:1px solid black">
+  <div id="player"></div>
+  <script type="text/javascript">
+var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '240',
+          width: '320',
+
+          //*******************************
+          //*******************************
+          //*******************************
+          //*******************************
+          //*******************************
+
+          // ここに YouTube ID
+          videoId: '3ePFZK1Wh5I',
+
+          //*******************************
+          //*******************************
+          //*******************************
+          //*******************************
+          //*******************************
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      function onPlayerReady(event) {
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+
+      var clickElement = document.getElementById("plya_btn");
+clickElement.addEventListener("click", function(event) {
+  player.playVideo();
+},false);
+  </script>
+  <hr style="border:0;border-bottom:1px solid black">
+</p>
+
+  <p><b>編集作業</b></p>
+  	<ol>
+  		<li>出力したlogファイルの拡張子をcsvに書き換えます。</li>
+  		<li>ExcelなりNumbersなりで開きます。</li>
+  		<li>セルの書式設定→数値→小数点以下の桁数: 3に変更します。</li>
+  		<li>1行目のindex.html:70を削除します。</li>
+  		<li>1分以上のデータを戻すため空白の列に「分行×60+秒行=出力先セル」をします。</li>
+  		<li>TimingデータとKeyデータを別で保存してデバッグします。</li>
+  	</ol>
+  
+  <p>BackSpaceキーを押してデータを削除した場合、ログ<br />「index.html:67 Console was cleared」が残るので、手順 4と同時に削除して下さい。</p>
+  </form>
+</div>
+</body>
+
+</html>

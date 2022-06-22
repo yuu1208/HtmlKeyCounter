@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+html,body {
+  width: 100%;
+  margin: 0;
+  font-family: 'M+ 1c',sans-serif;
+}
+div#editor {
+  top: 3em;
+  left: 3em;
+  width: auto;
+  height: auto;
+  position: absolute;
+  padding: 10px 20px;
+  border: 1px solid black;
+}
+.bt {
+  width: 70px;
+  height: 30px;
+  border-radius: 10px;
+  border: 0;
+  border: 1px solid black;
+}
+h2 {
+    border-bottom: 1px solid black;
+    text-align: center;
+}
